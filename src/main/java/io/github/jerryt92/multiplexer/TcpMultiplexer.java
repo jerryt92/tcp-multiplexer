@@ -1,0 +1,51 @@
+package io.github.jerryt92.multiplexer;
+
+import io.github.jerryt92.multiplexer.protocol.conf.ConfigReader;
+import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.ChannelHandler;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.EventLoopGroup;
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.SocketChannel;
+import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+/**
+ * @Date: 2024/11/11
+ * @Author: jerryt92
+ */
+public class TcpMultiplexer {
+    private static final Logger log = LogManager.getLogger(TcpMultiplexer.class);
+
+    public static void main(String[] args) {
+        ConfigReader.ServerConfig serverConfig = ConfigReader.INSTANCE.getAppConfig().getServer();
+        ServerBootstrap bootstrap = new ServerBootstrap();
+        EventLoopGroup bossGroup = new NioEventLoopGroup(1);
+        EventLoopGroup workerGroup = new NioEventLoopGroup();
+        try {
+            ChannelHandler channelHandler = new ChannelInitializer<SocketChannel>() {
+                @Override
+                public void initChannel(SocketChannel ch) {
+                    ch.pipeline().addLast(new RequestHandler(workerGroup));
+                }
+            };
+            bootstrap.group(bossGroup, workerGroup)
+                    .channel(NioServerSocketChannel.class)
+                    .handler(new LoggingHandler(LogLevel.INFO))
+                    .childHandler(channelHandler)
+                    // 设置并发连接数
+                    .option(ChannelOption.SO_BACKLOG, 1024)
+                    .bind(serverConfig.getPort()).sync().channel().closeFuture().sync();
+            log.info("Gateway started at port {}", serverConfig.getPort());
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+            workerGroup.shutdownGracefully();
+            bossGroup.shutdownGracefully();
+        }
+    }
+}

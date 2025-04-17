@@ -1,0 +1,16 @@
+# 监听端口
+server:
+  port: 30001
+forward:
+  enabled: ssh,ssl
+  # 默认转发到
+  default:
+    0.0.0.0:23
+  ssl:
+    0.0.0.0:443
+  http:
+    0.0.0.0:80
+  ssh:
+    0.0.0.0:22
+  mqtt:
+    0.0.0.0:1883
