@@ -29,7 +29,6 @@ public class TcpForwardRule {
             // 识别第一个数据包协议，获取对应的路由策略
             // Detect first packet protocol to get corresponding routing strategy
             ProtocolType protocol = ProtocolDetection.detectProtocol(msgByteBuf);
-            log.info("Protocol: {}", protocol);
             String address;
             int port;
             if (forwardConfig.getEnableProtocols().contains(protocol)) {
@@ -60,6 +59,9 @@ public class TcpForwardRule {
                 route = new ForwardTarget().setReject(true);
             }
             ProxyChannelCache.getChannelRouteCache().put(ctx.channel(), route);
+            log.debug("Src address: {}", ctx.channel().remoteAddress());
+            log.debug("Dst address: {}", ctx.channel().localAddress());
+            log.debug("Protocol: {}", protocol);
             return route;
         } catch (Exception e) {
             log.error("", e);

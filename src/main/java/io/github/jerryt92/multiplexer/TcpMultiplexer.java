@@ -38,7 +38,7 @@ public class TcpMultiplexer {
                     // 设置并发连接数
                     .option(ChannelOption.SO_BACKLOG, 1024)
                     .bind(serverConfig.getPort()).sync().channel().closeFuture().sync();
-            log.info("Gateway started at port {}", serverConfig.getPort());
+            log.info("TcpMultiplexer started at port {}", serverConfig.getPort());
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } finally {
