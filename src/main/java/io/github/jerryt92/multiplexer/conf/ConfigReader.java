@@ -1,4 +1,3 @@
-
 package io.github.jerryt92.multiplexer.conf;
 
 import io.github.jerryt92.multiplexer.TcpMultiplexer;
@@ -18,10 +17,8 @@ import java.util.Map;
 public class ConfigReader {
     private static final Logger log = LogManager.getLogger(ConfigReader.class);
     public static final ConfigReader INSTANCE = new ConfigReader();
-
     @Getter
     private final AppConfig appConfig = new AppConfig();
-
 
     private ConfigReader() {
         ClassLoader classLoader = TcpMultiplexer.class.getClassLoader();
