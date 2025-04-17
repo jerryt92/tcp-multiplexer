@@ -1,7 +1,6 @@
-package io.github.jerryt92.multiplexer;
+package io.github.jerryt92.multiplexer.forward;
 
-import io.github.jerryt92.multiplexer.protocol.entity.ForwardTarget;
-import io.github.jerryt92.multiplexer.protocol.forward.TcpForwardRule;
+import io.github.jerryt92.multiplexer.entity.ForwardTarget;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
@@ -13,8 +12,6 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.Map;
 
 /**
  * @Date: 2024/11/11

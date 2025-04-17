@@ -1,6 +1,7 @@
 package io.github.jerryt92.multiplexer;
 
-import io.github.jerryt92.multiplexer.protocol.conf.ConfigReader;
+import io.github.jerryt92.multiplexer.conf.ConfigReader;
+import io.github.jerryt92.multiplexer.forward.RequestHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelInitializer;

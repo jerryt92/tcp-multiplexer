@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-package io.github.jerryt92.multiplexer;
+package io.github.jerryt92.multiplexer.forward;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;

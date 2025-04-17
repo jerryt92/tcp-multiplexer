@@ -1,9 +1,8 @@
-package io.github.jerryt92.multiplexer.protocol.forward;
+package io.github.jerryt92.multiplexer.forward;
 
-import io.github.jerryt92.multiplexer.ProxyChannelCache;
 import io.github.jerryt92.multiplexer.protocol.ProtocolType;
-import io.github.jerryt92.multiplexer.protocol.conf.ConfigReader;
-import io.github.jerryt92.multiplexer.protocol.entity.ForwardTarget;
+import io.github.jerryt92.multiplexer.conf.ConfigReader;
+import io.github.jerryt92.multiplexer.entity.ForwardTarget;
 import io.github.jerryt92.multiplexer.protocol.tcp.ProtocolDetection;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;

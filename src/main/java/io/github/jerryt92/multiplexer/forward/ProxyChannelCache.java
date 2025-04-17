@@ -1,6 +1,6 @@
-package io.github.jerryt92.multiplexer;
+package io.github.jerryt92.multiplexer.forward;
 
-import io.github.jerryt92.multiplexer.protocol.entity.ForwardTarget;
+import io.github.jerryt92.multiplexer.entity.ForwardTarget;
 import io.netty.channel.Channel;
 
 import java.util.concurrent.ConcurrentHashMap;

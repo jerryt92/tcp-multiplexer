@@ -1,4 +1,4 @@
-package io.github.jerryt92.multiplexer.protocol.entity;
+package io.github.jerryt92.multiplexer.entity;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

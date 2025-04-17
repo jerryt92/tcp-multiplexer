@@ -1,5 +1,5 @@
 
-package io.github.jerryt92.multiplexer.protocol.conf;
+package io.github.jerryt92.multiplexer.conf;
 
 import io.github.jerryt92.multiplexer.TcpMultiplexer;
 import io.github.jerryt92.multiplexer.protocol.ProtocolType;
