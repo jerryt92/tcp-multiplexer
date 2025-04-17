@@ -17,7 +17,7 @@
     <dependencies>
         <dependency>
             <groupId>io.netty</groupId>
-            <artifactId>netty-codec-http</artifactId>
+            <artifactId>netty-codec</artifactId>
             <version>4.1.114.Final</version>
         </dependency>
         <dependency>
