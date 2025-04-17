@@ -25,7 +25,6 @@ public class TcpForwardRule {
             if (route != null) {
                 return route;
             }
-            ByteBuf msgCopy = msgByteBuf.copy();
             // 识别第一个数据包协议，获取对应的路由策略
             // Detect first packet protocol to get corresponding routing strategy
             ProtocolType protocol = ProtocolDetection.detectProtocol(msgByteBuf);
