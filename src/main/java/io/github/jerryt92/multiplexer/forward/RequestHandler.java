@@ -30,8 +30,8 @@ public class RequestHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(final ChannelHandlerContext ctx, Object msg) {
         try {
-            log.info("Src address: {}", ctx.channel().remoteAddress());
-            log.info("Dst address: {}", ctx.channel().localAddress());
+            log.debug("Src address: {}", ctx.channel().remoteAddress());
+            log.debug("Dst address: {}", ctx.channel().localAddress());
             ForwardTarget forwardTarget = tcpForwardRule.getRoute(ctx, msg);
             if (forwardTarget == null || forwardTarget.isReject()) {
                 ctx.channel().close();
