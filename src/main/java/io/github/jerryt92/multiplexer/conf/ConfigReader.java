@@ -8,9 +8,11 @@ import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.plugins.convert.TypeConverters;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
+import java.net.InetAddress;
 import java.util.HashSet;
 import java.util.Map;
 
@@ -30,7 +32,7 @@ public class ConfigReader {
             Map<String, Object> serverConfigMap = (Map<String, Object>) obj.get("server");
             ServerConfig serverConfig = new ServerConfig();
             String host = (String) serverConfigMap.get("host");
-            serverConfig.setHost(StringUtils.defaultIfBlank(host, "0.0.0.0"));
+            serverConfig.setHost(InetAddress.getByName(StringUtils.defaultIfBlank(host, "0.0.0.0")));
             serverConfig.setPort((Integer) serverConfigMap.get("port"));
             appConfig.setServer(serverConfig);
             Map<String, Object> forwardConfigMap = (Map<String, Object>) obj.get("forward");
@@ -81,7 +83,7 @@ public class ConfigReader {
 
     @Data
     public static class ServerConfig {
-        private String host;
+        private InetAddress host;
         private int port;
 
     }
