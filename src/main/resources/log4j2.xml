@@ -37,7 +37,7 @@
             <!-- 日志默认同一文件夹下可以存放的数量,不设置此属性则默认为7个 -->
             <DefaultRolloverStrategy max="10" />
             <Filters>
-                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+                <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
             </Filters>
         </RollingFile>
     </appenders>
