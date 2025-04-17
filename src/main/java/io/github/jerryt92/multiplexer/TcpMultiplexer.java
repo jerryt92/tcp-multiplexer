@@ -37,8 +37,18 @@ public class TcpMultiplexer {
                     .childHandler(channelHandler)
                     // 设置并发连接数
                     .option(ChannelOption.SO_BACKLOG, 1024)
-                    .bind(serverConfig.getHost(), serverConfig.getPort()).sync().channel().closeFuture().sync();
-            log.info("TcpMultiplexer started at port {}", serverConfig.getPort());
+                    .bind(serverConfig.getHost(), serverConfig.getPort())
+                    .addListener(future -> {
+                        if (future.isSuccess()) {
+                            log.info("TcpMultiplexer started at port {}", serverConfig.getPort());
+                        } else {
+                            log.error("Failed to start TcpMultiplexer", future.cause());
+                        }
+                    })
+                    .sync()
+                    .channel()
+                    .closeFuture()
+                    .sync();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } finally {
